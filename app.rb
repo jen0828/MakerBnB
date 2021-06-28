@@ -1,8 +1,13 @@
 require 'sinatra/base'
+require 'sinatra/reloader'
 
 class MakersBnB < Sinatra::Base
   get '/' do
-    'Hello MakersBnB!'
+    erb :sign_up
+  end
+
+  get '/successful' do
+
   end
 
   get '/booking' do
