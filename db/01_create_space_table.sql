@@ -1,0 +1,1 @@
+CREATE TABLE space (name VARCHAR(60), description VARCHAR(120), price INT, start_date DATE, finish_date DATE);

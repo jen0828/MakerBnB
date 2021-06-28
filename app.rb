@@ -15,7 +15,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/listing' do
-
+    
   end
 
   get '/request' do
