@@ -8,4 +8,5 @@ RSpec.describe User do
 		expect(user.email).to eq('fabio@gmail.com')
 		expect(user.password).to eq('Fabio123!')
 	end
+
 end
