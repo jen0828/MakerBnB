@@ -15,4 +15,10 @@ class User
 		result = connection.exec("INSERT INTO guest (name, email, password) VALUES ('#{name}', '#{email}', '#{password}') RETURNING id, name, email, password;")
 		User.new(id: result[0]['id'], name: result[0]['name'], email: result[0]['email'], password: result[0]['password'])
 	end
+
+	def self.find(name)
+		connection = PG.connect(dbname: 'makersbnb_test')
+		result = connection.query("SELECT * FROM guest WHERE name = '#{name}'")
+		User.new(result[0]['name'], result[0]['email'])
+	end
 end

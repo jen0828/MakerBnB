@@ -15,4 +15,10 @@ class MbNb
   def spaces
     @all_spaces[0]
   end
+
+  def add(user)
+  end
+  def user
+
+  end
 end

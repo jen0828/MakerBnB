@@ -15,7 +15,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/successful' do
-    # @name = @user.name
+    @user = User.find(session[:user_name])
     erb :successful_signup
   end
 
