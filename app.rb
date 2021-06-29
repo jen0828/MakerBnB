@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative './lib/user'
+require './lib/space'
 
 class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
@@ -24,14 +25,17 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
-    erb :"spaces/listings"
+    erb :'spaces/listings'
   end
 
   get '/spaces/new' do
     erb :"/spaces/new"
   end
   
-  get '/request' do
+  post '/listing' do
+    Space.create(name: params[:name], description: params[:description], price: params[:price], start_date: params[:start_date], finish_date: params[:finish_date])
+    @listing = Space.listing
+    erb :'spaces/listings'
   end
 
   
