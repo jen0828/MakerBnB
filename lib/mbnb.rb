@@ -1,4 +1,5 @@
 require './lib/space'
+require_relative 'user'
 
 class MbNb
   attr_reader :all_spaces
@@ -16,9 +17,8 @@ class MbNb
     @all_spaces[0]
   end
 
-  def add(user)
-  end
-  def user
-
-  end
+  # def find
+  #   connection = PG.connect(dbname: 'makersbnb_test')
+  #   	result = connection.query("SELECT * FROM guest WHERE name = '#{name}'")
+  # end
 end

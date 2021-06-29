@@ -10,12 +10,13 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/successful' do
-    User.create(name: params[:name], email: params[:email], password: params[:password])
+   User.create(name: params[:name], email: params[:email], password: params[:password])
+   session[:name] = params[:name]
     redirect '/successful'
   end
 
   get '/successful' do
-    @user = User.find(session[:user_name])
+    @name = User.find(session[:name])
     erb :successful_signup
   end
 

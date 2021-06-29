@@ -23,15 +23,10 @@ RSpec.describe User do
 
 	describe '.find' do
 		it 'finds a user by name' do
-			user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: '456')
-			result = User.find(name: user)
+			User.create(name: 'Chucka', email: 'chucka@gmail.com', password: '456')
+			result = User.find('Chucka')
 
-			expect(result.name).to eq(user.name)
-			expect(result.email).to eq(user.email)
+			expect(result).to eq('Chucka')
 		end
-
-		# it 'returns nil if there is no ID given' do
-		# 	expect(User.find(nil)).to eq nil
-		# end
 	end
 end

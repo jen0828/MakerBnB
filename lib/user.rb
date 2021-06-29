@@ -18,7 +18,7 @@ class User
 
 	def self.find(name)
 		connection = PG.connect(dbname: 'makersbnb_test')
-		result = connection.query("SELECT * FROM guest WHERE name = '#{name}'")
-		User.new(result[0]['name'], result[0]['email'])
+		result = connection.query("SELECT * FROM guest WHERE name = '#{name}';")
+		@name = result[0]['name']
 	end
 end
