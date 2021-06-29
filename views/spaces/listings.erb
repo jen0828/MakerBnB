@@ -3,3 +3,19 @@
 <form  action="/spaces/new" method="get">
   <input type="submit" value="List my spaces" />
   </form>
+
+  <% @listing.each do |space| %>
+  <div>
+  <%=space.name%>
+  <%=space.description%>
+  <%=space.price%>
+  <%=space.start_date%>
+  </div>
+  <%end%>
+
+  <style>
+  div {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
