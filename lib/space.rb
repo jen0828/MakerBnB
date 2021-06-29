@@ -1,5 +1,6 @@
 require 'pg'
 
+
 class Space
   attr_reader :name, :description, :price, :start_date, :finish_date
 
