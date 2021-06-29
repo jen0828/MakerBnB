@@ -6,16 +6,16 @@ class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
 
   get '/' do
-    erb :sign_up
+    erb(:sign_up)
   end
 
   post '/successful' do
-    User.new(params[:name], params[:email], params[:password])
+    @user = User.new(params[:name], params[:email], params[:password])
     redirect '/successful'
   end
 
   get '/successful' do
-    @name = User.name
+    @name = @user.name
     erb :successful_signup
   end
 
