@@ -22,6 +22,7 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces' do
     @name = User.find(session[:name])
+    @listing = Space.listing
     erb :'spaces/listings'
   end
 

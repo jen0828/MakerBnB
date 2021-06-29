@@ -19,7 +19,7 @@ class Space
 
   def self.listing
     connection = PG.connect(dbname: 'makersbnb')
-    result = connection.exec("SELECT * FROM space;")
+    result = connection.exec("SELECT * FROM space LIMIT 6;")
      result.map do |space| 
        Space.new(name: space['name'], description: space['description'], price: space['price'], start_date: space['start_date'], finish_date: space['finish_date'])
      end

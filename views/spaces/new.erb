@@ -1,11 +1,33 @@
 <h1> List my spaces </h1>
 
 <form  action="/listing" method="post">
-  <input type="text" name="name"/>
-  <input type="text" name="description" placeholder="Description" />
-  <input type="text" name="price" placeholder="Price" />
+  <input type="text" name="name" placeholder ='Name of property...'/>
+  <input type="text" name="description" placeholder="Description..." required/>
+  <input type="text" name="price" placeholder="Price..." />
   <input type="date" name="start_date" />
   <input type="date" name="finish_date" />
   <input type="submit" value="List my spaces" />
 </form>
 
+<style>
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ddd;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    padding: 10px;
+    border: none;
+    margin: 5px;
+    border-radius: 5px;
+    width: 240px;
+  }
