@@ -3,7 +3,11 @@
 <form  action="/spaces/new" method="get">
   <input type="submit" value="List my spaces" />
   </form>
+<form action ='/spaces/all' method ='post'>
+  <input type ="submit" value="view spaces" name ='list_new_space'>
+</form>
 
+  <% if params[:list_new_space] %>
   <% @listing.each do |space| %>
   <div>
   <%=space.name%>
@@ -11,6 +15,7 @@
   <%=space.price%>
   <%=space.start_date%>
   </div>
+  <%end%>
   <%end%>
 
   <style>

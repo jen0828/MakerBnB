@@ -28,6 +28,11 @@ class MakersBnB < Sinatra::Base
     erb :'spaces/listings'
   end
 
+  post '/spaces/all' do
+    @listing = Space.listing
+    erb :'spaces/listings'
+  end
+
   get '/spaces/new' do
     erb :"/spaces/new"
   end
