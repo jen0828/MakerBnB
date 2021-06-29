@@ -23,10 +23,13 @@ class MakersBnB < Sinatra::Base
 
   end
 
-  get '/listing' do
+  get '/spaces' do
     
   end
 
+  get '/spaces/new' do
+  end
+  
   get '/request' do
   end
 
