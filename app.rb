@@ -13,12 +13,7 @@ class MakersBnB < Sinatra::Base
   post '/successful' do
    User.create(name: params[:name], email: params[:email], password: params[:password])
    session[:name] = params[:name]
-    redirect '/successful'
-  end
-
-  get '/successful' do
-    @name = User.find(session[:name])
-    erb :successful_signup
+    redirect '/spaces'
   end
 
   get '/booking' do
@@ -26,15 +21,18 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
+    @name = User.find(session[:name])
     erb :'spaces/listings'
   end
 
   post '/spaces/all' do
+    @name = User.find(session[:name])
     @listing = Space.listing
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
+    @name = User.find(session[:name])
     erb :"/spaces/new"
   end
   
