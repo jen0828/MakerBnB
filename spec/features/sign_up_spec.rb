@@ -3,6 +3,7 @@ feature 'sigining up' do
     visit("/")
     fill_in("email", with: "fabio@gmail.com")
     fill_in("name", with: "Fabio")
+    fill_in("password", with: "123")
     click_button("Sign up") 
 
     expect(page).to have_content("Welcome")

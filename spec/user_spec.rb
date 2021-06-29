@@ -2,7 +2,7 @@ require 'user'
 require 'pg'
 
 RSpec.describe User do
-	let(:user) { User.new("Fabio", "fabio@gmail.com", "Fabio123!")}
+	let(:user) { User.new(id: 1, name: "Fabio", email: "fabio@gmail.com", password: "Fabio123!")}
 
 	it 'has different attributes' do
 		expect(user.name).to eq('Fabio')
