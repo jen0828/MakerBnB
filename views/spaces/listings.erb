@@ -1,4 +1,4 @@
-<h1> Welcome, <%= @name %>!</h1> 
+<h1> Welcome, <%= @name.name %>!</h1> 
 <h1>Would you like to book a space?</h1>
 
 <form class ='available' action ='/spaces/availability' method ='post' >
@@ -22,7 +22,7 @@
       <div class ='main_info'>
         <span class ='name'><%= space.name %></span>
         <span class ='description'><%=space.description%></span>
-        <p class ='host'>Hosted by <%=@name%></p>
+        <p class ='host'>Hosted by <%=@name.name%></p>
         <span class ='price'>£<%=space.price%> per night</span>
         <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
       </div>
@@ -37,7 +37,7 @@
     <div class ='main_info'>
       <span class ='name'><%= space.name %></span>
       <span class ='description'><%=space.description%></span>
-      <p class ='host'>Hosted by <%=@name%></p>
+      <p class ='host'>Hosted by <%=@name.name%></p>
       <span class ='price'>£<%=space.price%> per night</span>
       <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
     </div>
