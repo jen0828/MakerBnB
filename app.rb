@@ -12,6 +12,16 @@ class MakersBnB < Sinatra::Base
     erb(:sign_up)
   end
 
+  get '/login' do
+    erb(:login)
+  end
+
+  post '/confirm' do
+    connection = DbConnect.new.connect
+    
+    redirect '/spaces'
+  end
+
   # Once the data has been inserted, it is transfered here, where the user object is created and the DB is updated:
 
   post '/successful' do
