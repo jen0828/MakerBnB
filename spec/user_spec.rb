@@ -1,5 +1,5 @@
 require 'user'
-require 'pg'
+# require 'pg'
 
 RSpec.describe User do
 	let(:user) { User.new(id: 1, name: "Fabio", email: "fabio@gmail.com", password: "Fabio123!")}
