@@ -6,9 +6,13 @@ require './lib/space'
 class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
 
+  # Users are first directed to the landing page, where they have the ability to sign up:
+
   get '/' do
     erb(:sign_up)
   end
+
+  # Once the data has been inserted, it is transfered here, where the user object is created and the DB is updated:
 
   post '/successful' do
    User.create(name: params[:name], email: params[:email], password: params[:password])
@@ -19,6 +23,8 @@ class MakersBnB < Sinatra::Base
   get '/booking' do
 
   end
+
+  # Users will be redirected here to list or view spaces:
 
   get '/spaces' do
     @name = User.find(session[:name])
