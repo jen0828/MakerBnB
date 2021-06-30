@@ -29,6 +29,7 @@ class MakersBnB < Sinatra::Base
   get '/spaces' do
     @name = User.find(session[:name])
     @listing = Space.listing
+    @available = Space.availability
     erb :'spaces/listings'
   end
 
@@ -40,11 +41,14 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces/new' do
     @name = User.find(session[:name])
+    @listing = Space.listing
+    @available = Space.availability
     erb :"/spaces/new"
   end
 
-  get '/listing/availability' do
-    
+  post '/spaces/availability' do
+    Space.available(start_date: params[:start_date], finish_date: params[:finish_date])
+    @available = Space.availability
     erb :'spaces/listings'
   end 
   
