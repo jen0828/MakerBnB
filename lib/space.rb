@@ -29,7 +29,7 @@ class Space < DbConnect
   end
 
   def self.available(start_date:, finish_date:)
-    connection = PG.connect(dbname: 'makersbnb_test')
+    connection = DbConnect.new.connect
     
     result = connection.exec("SELECT * FROM space WHERE start_date <= '#{start_date}' AND finish_date >= '#{finish_date}';")
     @availability = result.map do |space| 

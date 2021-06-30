@@ -26,7 +26,7 @@ RSpec.describe User do
 			User.create(name: 'Chucka', email: 'chucka@gmail.com', password: '456')
 			result = User.find('Chucka')
 
-			expect(result).to eq('Chucka')
+			expect(result.name).to eq('Chucka')
 		end
 	end
 end
