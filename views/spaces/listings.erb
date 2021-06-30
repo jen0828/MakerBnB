@@ -1,26 +1,103 @@
-<h1> Welcome, <%= @name %>! Would you like to book a space?</h1>
+<h1> Welcome, <%= @name.name %>!</h1> 
+<h1>Would you like to book a space?</h1>
+
+<form class ='available' action ='/spaces/availability' method ='post' >
+    <input type ='date' name ='start_date' required>
+    <input type ='date' name ='finish_date' required>
+    <input type ='submit' name ='available' value ='Check availability'>
+  </form>
 
 <form  action="/spaces/new" method="get">
-  <input type="submit" value="List my spaces" />
+  <input type="submit" value="List a space" />
   </form>
-<form action ='/spaces/all' method ='post'>
-  <input type ="submit" value="view spaces" name ='list_new_space'>
-</form>
 
-  <% if params[:list_new_space] %>
+  <form action ='/spaces/all' method ='post' >
+    <input type ='submit' name ='listing' value ='View all spaces'>
+  </form>
+
+  <% if params[:available] %>
+    <% @available.each do |space| %>
+      <div class ='listing'>
+      <div class ='image'>image of property</div>
+      <div class ='main_info'>
+        <span class ='name'><%= space.name %></span>
+        <span class ='description'><%=space.description%></span>
+        <p class ='host'>Hosted by <%=@name.name%></p>
+        <span class ='price'>£<%=space.price%> per night</span>
+        <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
+      </div>
+    </div>
+    <%end%>
+  <%end%>
+
+  <% if params[:listing] %>
   <% @listing.each do |space| %>
-  <div>
-  <%=space.name%>
-  <%=space.description%>
-  <%=space.price%>
-  <%=space.start_date%>
+  <div class ='listing'>
+    <div class ='image'>image of property</div>
+    <div class ='main_info'>
+      <span class ='name'><%= space.name %></span>
+      <span class ='description'><%=space.description%></span>
+      <p class ='host'>Hosted by <%=@name.name%></p>
+      <span class ='price'>£<%=space.price%> per night</span>
+      <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
+    </div>
   </div>
   <%end%>
   <%end%>
 
   <style>
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ddd;
+  }
   div {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
   }
+
+  .listing {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    border-bottom: 1px solid #777;
+  }
+
+   input {
+    padding: 10px;
+    border: none;
+    margin: 5px;
+    background-color: white;
+    border-radius: 5px;
+    width: 240px;
+    box-shadow: 1px 1px 1px #777;
+  }
+
+  .main_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+  }
+
+  .available {
+    display: flex;
+  }
+
+  .image {
+    height: 80%;
+    width: 60%;
+    border-radius: 5px;
+    background-color: white;
+  }
+
+  .name, .description {
+    font-size: 1.4rem;
+  }
+
+  </style>

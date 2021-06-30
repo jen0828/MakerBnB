@@ -1,5 +1,5 @@
 require 'user'
-require 'pg'
+# require 'pg'
 
 RSpec.describe User do
 	let(:user) { User.new(id: 1, name: "Fabio", email: "fabio@gmail.com", password: "Fabio123!")}
@@ -26,7 +26,7 @@ RSpec.describe User do
 			User.create(name: 'Chucka', email: 'chucka@gmail.com', password: '456')
 			result = User.find('Chucka')
 
-			expect(result).to eq('Chucka')
+			expect(result.name).to eq('Chucka')
 		end
 	end
 end
