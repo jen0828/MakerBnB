@@ -42,6 +42,11 @@ class MakersBnB < Sinatra::Base
     @name = User.find(session[:name])
     erb :"/spaces/new"
   end
+
+  get '/listing/availability' do
+    
+    erb :'spaces/listings'
+  end 
   
   post '/listing' do
     Space.create(name: params[:name], description: params[:description], price: params[:price], start_date: params[:start_date], finish_date: params[:finish_date])

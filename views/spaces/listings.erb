@@ -4,9 +4,12 @@
 <form  action="/spaces/new" method="get">
   <input type="submit" value="List a space" />
   </form>
-<%# <form action ='/spaces/all' method ='post'>
-  <input type ="submit" value="view spaces" name ='list_new_space'>
-</form> %>
+
+  <form action ='/listing/availability' method ='get' >
+    <input type ='date' name ='start_date'>
+    <input type ='date' name ='finish_date'>
+    <input type ='submit' value ='Check availability'>
+  </form>
 
   <% @listing.each do |space| %>
   <div class ='listing'>
@@ -71,3 +74,5 @@
   .name, .description {
     font-size: 1.4rem;
   }
+
+  </style>
