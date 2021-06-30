@@ -1,6 +1,7 @@
 require 'pg'
 
-class DbConnect 
+class DbConnect
+
   def connect
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')

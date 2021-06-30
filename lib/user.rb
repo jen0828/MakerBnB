@@ -1,37 +1,39 @@
 require_relative 'db_connection'
 require 'bcrypt'
 
-class User < DbConnect
-	attr_reader :id, :name, :email, :password
+class User < DbConnect 
 
-	def initialize(id:, name:, email:, password:)
+	attr_reader :id, :name, :email
+
+	def initialize(id:, name:, email:)
 		@id = id
 		@name = name
 		@email = email
-		@password = password
 	end
 	
 	def self.create(name:, email:, password:)
+		encrypted_password = BCrypt::Password.create(password)
 		connection = DbConnect.new.connect
 
-		result = connection.exec("INSERT INTO guest (name, email, password) VALUES ('#{name}', '#{email}', '#{password}') RETURNING id, name, email, password;")
-		User.new(id: result[0]['id'], name: result[0]['name'], email: result[0]['email'], password: result[0]['password'])
+		result = connection.query("INSERT INTO guest (name, email, password) VALUES ('#{name}', '#{email}', '#{encrypted_password}') RETURNING id, name, email;")
+		User.new(id: result[0]['id'], name: result[0]['name'], email: result[0]['email'])
 	end
 
-	def self.find(name)
+	def self.find(id)
+		return nil unless id
+		
 		connection = DbConnect.new.connect
 		
-		result = connection.query("SELECT * FROM guest WHERE name = '#{name}';")
-		@name = result[0]['name']
+		result = connection.query("SELECT * FROM guest WHERE id = '#{id}';")		
 	end
 
 	def self.authenicate(email:, password:)
-		connection = DbConnect.new.connect
+		result = DbConnect.new.connect.query("SELECT * FROM guest WHERE email = '#{email}'")
+		
+		return unless result.any?
+		return unless BCrypt::Password.create(result[0]['password']) == password
 
-		result = connection.query("SELECT * FROM guest WHERE email = '#{email}'")
-		return unless BCrypt::Password.new(result[0]['password']) == password
-
-		User.new(id: result[0]['id'], name: result[0]['name'], email: result[0]['email'], password: result[0]['password'])
+		User.new(id: result[0]['id'], name: result[0]['name'], email: result[0]['email'])
 	end
 
 end

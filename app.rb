@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require_relative './lib/user'
 require './lib/space'
 
+
 class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
 
@@ -17,17 +18,18 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/confirm' do
-    user = User.authenicate(email: params[:email], password: params[:password])
-    session[:name] = user.id
-    
+    result = DbConnect.new.connect.query("SELECT * FROM guest WHERE email = '#{params[:email]}'")
+    user = User.new(result[0]['id'], result[0]['name'], result[0]['email'])
+
+    session[:user_id] = user.id
     redirect '/spaces'
   end
 
   # Once the data has been inserted, it is transfered here, where the user object is created and the DB is updated:
 
   post '/successful' do
-   User.create(name: params[:name], email: params[:email], password: params[:password])
-   session[:name] = params[:name]
+   user = User.create(name: params[:name], email: params[:email], password: params[:password])
+   session[:user_id] = user.id
     redirect '/spaces'
   end
 
@@ -38,20 +40,20 @@ class MakersBnB < Sinatra::Base
   # Users will be redirected here to list or view spaces:
 
   get '/spaces' do
-    @name = User.find(session[:name])
+    @user = User.find(session[:user_id])
     @listing = Space.listing
     @available = Space.availability
     erb :'spaces/listings'
   end
 
   post '/spaces/all' do
-    @name = User.find(session[:name])
+    @user = User.find(session[:user_id])
     @listing = Space.listing
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
-    @name = User.find(session[:name])
+    @user = User.find(session[:user_id])
     @listing = Space.listing
     @available = Space.availability
     erb :"/spaces/new"
