@@ -17,7 +17,8 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/confirm' do
-    connection = DbConnect.new.connect
+    user = User.authenicate(email: params[:email], password: params[:password])
+    session[:name] = user.id
     
     redirect '/spaces'
   end

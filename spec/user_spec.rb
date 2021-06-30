@@ -29,4 +29,13 @@ RSpec.describe User do
 			expect(result).to eq('Chucka')
 		end
 	end
+
+	describe '.authenticate' do
+		it 'returns a user given a correct username and password' do
+			user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: '456')
+			authenicated_user = User.authenicate(email: 'chucka@gmail.com', password: '456')
+
+			expect(authenicated_user.id).to eq user.id
+		end
+	end
 end
