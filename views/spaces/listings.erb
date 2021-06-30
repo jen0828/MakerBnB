@@ -1,13 +1,36 @@
 <h1> Welcome, <%= @name %>!</h1> 
 <h1>Would you like to book a space?</h1>
 
+<form class ='available' action ='/spaces/availability' method ='post' >
+    <input type ='date' name ='start_date' required>
+    <input type ='date' name ='finish_date' required>
+    <input type ='submit' name ='available' value ='Check availability'>
+  </form>
+
 <form  action="/spaces/new" method="get">
   <input type="submit" value="List a space" />
   </form>
-<%# <form action ='/spaces/all' method ='post'>
-  <input type ="submit" value="view spaces" name ='list_new_space'>
-</form> %>
 
+  <form action ='/spaces/all' method ='post' >
+    <input type ='submit' name ='listing' value ='View all spaces'>
+  </form>
+
+  <% if params[:available] %>
+    <% @available.each do |space| %>
+      <div class ='listing'>
+      <div class ='image'>image of property</div>
+      <div class ='main_info'>
+        <span class ='name'><%= space.name %></span>
+        <span class ='description'><%=space.description%></span>
+        <p class ='host'>Hosted by <%=@name%></p>
+        <span class ='price'>£<%=space.price%> per night</span>
+        <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
+      </div>
+    </div>
+    <%end%>
+  <%end%>
+
+  <% if params[:listing] %>
   <% @listing.each do |space| %>
   <div class ='listing'>
     <div class ='image'>image of property</div>
@@ -16,9 +39,10 @@
       <span class ='description'><%=space.description%></span>
       <p class ='host'>Hosted by <%=@name%></p>
       <span class ='price'>£<%=space.price%> per night</span>
-      <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.start_date%></b></span>
+      <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
     </div>
   </div>
+  <%end%>
   <%end%>
 
   <style>
@@ -61,6 +85,10 @@
     width: 40%;
   }
 
+  .available {
+    display: flex;
+  }
+
   .image {
     height: 80%;
     width: 60%;
@@ -71,3 +99,5 @@
   .name, .description {
     font-size: 1.4rem;
   }
+
+  </style>

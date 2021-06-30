@@ -1,0 +1,1 @@
+SELECT * FROM space WHERE start_date >= '2021-06-15' AND finish_date >= '2021-06-17';
