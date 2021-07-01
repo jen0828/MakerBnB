@@ -18,13 +18,18 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/confirm' do
-    # result = DbConnect.new.connect.query("SELECT * FROM guest WHERE email = '#{params[:email]}'")
-    # user = User.new(result[0]['id'], result[0]['name'], result[0]['email'])
+    user = User.authenticate(email: params[:email], password: params[:password])
 
-    user = User.authenicate(email: params[:email], password: params[:password])
+    if user == nil
+      redirect '/error'
+    else
+      session[:user_id] = user.id
+      redirect '/spaces'
+    end
+  end
 
-    session[:user_id] = user.id
-    redirect '/spaces'
+  get '/error' do
+    erb(:error)
   end
 
   # Once the data has been inserted, it is transfered here, where the user object is created and the DB is updated:
