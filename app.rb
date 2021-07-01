@@ -2,10 +2,12 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative './lib/user'
 require './lib/space'
+require 'sinatra/flash'
 
 
 class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
+  register Sinatra::Flash
 
   # Users are first directed to the landing page, where they have the ability to sign up:
 
@@ -30,15 +32,16 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/logout' do
-    erb(:logout)
+    redirect '/'
   end
 
   post '/logout' do
     user = User.find(session[:user_id])
     user.loged_in = false
     session[:user_status] = user.loged_in
-
-    redirect '/goodbye'
+    session.clear
+    flash[:notice] = 'You have signed out.'
+    redirect '/'
   end
 
   get '/error' do
@@ -62,7 +65,6 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces' do
     @user = User.find(session[:user_id])
-    @find = Space.find
     @listing = Space.listing
     redirect '/error' unless session[:user_status] == true
     erb :'spaces/listings'
@@ -72,14 +74,13 @@ class MakersBnB < Sinatra::Base
 
   post '/spaces/all' do
     @user = User.find(session[:user_id])
-    @find = Space.find
-    @listing = Space.find
+    @listing = Space.listing
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
     @user = User.find(session[:user_id])
-    @listing = Space.find
+    @listing = Space.listing
     redirect '/error' unless session[:user_status] == true
     erb :"/spaces/new"
   end
@@ -93,19 +94,18 @@ class MakersBnB < Sinatra::Base
   
   post '/listing' do
     @user = User.find(session[:user_id])
-    @find = Space.find
     Space.create(name: params[:name], description: params[:description], price: params[:price], start_date: params[:start_date], finish_date: params[:finish_date], guest_id: @user.id)
-    @listing = Space.find
+    @listing = Space.listing
     erb :'spaces/listings'
   end
 
-  get '/spaces/booking' do
+  get '/spaces/:id/booking' do
+    @id = User.find(session[:user_id])
+    @user = User.find(params[:book])
+    @booking = Space.find(params[:book])  
     erb :"spaces/booking"
   end
 
-  get '/goodbye' do
-    erb(:goodbye)
-  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0

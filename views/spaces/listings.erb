@@ -36,8 +36,8 @@
         <span class ='price'>£<%=space.price%> per night</span>
         <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
       </div>
-        <form action ='/spaces/booking' method ='get' >
-          <button class ='btn_book' type ='submit' name ='<%= space.id%>' value ='Book'>Book</button>
+        <form action ='/spaces/<%= space.id %>/booking' method ='get' >
+          <button class ='btn_book' type ='submit' name ='book' value ='<%= space.id %>'>Book</button>
         </form>
     </div>
     <%end%>
@@ -54,9 +54,9 @@
       <span class ='price'>£<%=space.price%> per night</span>
       <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
     </div>
-    <form action ='/spaces/booking' method ='get' >
-          <button class ='btn_book' type ='submit' name ='<%= space.id%>' value ='Book'>Book</button>
-        </form>
+    <form action ='/spaces/<%= space.id %>/booking' method ='get' >
+      <button class ='btn_book' type ='submit' name ='book' value ='<%= space.id %>'>Book</button>
+    </form>
   </div>
   <%end%>
   <%end%>

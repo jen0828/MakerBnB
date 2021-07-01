@@ -21,4 +21,5 @@ group :development do
   gem 'sinatra-contrib'
   gem 'sinatra-flash'
   gem 'webrick', '~> 1.7'
+  gem 'sinatra-flash'
 end
