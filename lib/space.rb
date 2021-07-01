@@ -12,7 +12,6 @@ class Space < DbConnect
   end
 
   def self.create(name:, description:, price:, start_date:, finish_date:)
-
     connection = DbConnect.new.connect
     
     result = connection.exec("INSERT INTO space (name, description, price, start_date, finish_date) VALUES ('#{name}', '#{description}', #{price}, '#{start_date}', '#{finish_date}') RETURNING name, description, price, start_date, finish_date;")
@@ -40,5 +39,4 @@ class Space < DbConnect
   def self.availability
     @availability
   end
-
 end

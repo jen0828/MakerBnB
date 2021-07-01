@@ -36,7 +36,6 @@ class User < DbConnect
 		result.map do |row|
 			new(id: row['id'], name: row['name'], email: row['email'], password: row['password'])
 		end.first
-
 	end
 
 	def self.find_by(email)
@@ -48,7 +47,6 @@ class User < DbConnect
 		result.map do |row|
 			new(id: row['id'], name: row['name'], email: row['email'], password: row['password'])
 		end.first
-
 	end
 
 	def self.authenticate(email:, password:)
@@ -57,5 +55,4 @@ class User < DbConnect
 		return nil unless user.password == password
 		user
 	end
-
 end

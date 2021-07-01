@@ -10,7 +10,6 @@ feature 'Authentication' do
 			click_button('Login')
 	
 			expect(page).to have_content('Would you like to book a space?')
-			expect(page).to have_content('/spaces')
 		end
 
 		scenario 'user logs in with the wrong password' do
@@ -20,8 +19,7 @@ feature 'Authentication' do
 			fill_in('password', with: 'incorrect_password')
 			click_button('Login')
 	
-			expect(page).to have_content('Your email or password are incorrect')
-			expect(page).to have_content('/')
+			expect(page).to have_content('It seems like your email address or password are incorrect!')
 		end
 		
 	end
