@@ -1,183 +1,98 @@
-<header>
-  <p class ='logo'>Makers BnB</p>
-  <div>
-    <p> Logged in as, <%= @user.guest_name %>! </p> 
-    <form class ='btn' action ='/logout' method ='post'>
-      <button class ='btn' type ='submit' name ='log_out' value ='Log out'>Log out</button>
+<head>
+<title>MakersBnB</title>
+ <link rel="icon" href="https://i.imgur.com/nDkbAZs.png">
+ <!-- Font -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,700;1,200;1,300;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
+ 
+<!--  Bootstrap -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 
+  <!-- CSS file -->
+ <link rel="stylesheet" href="style.css">
+
+<!-- favcon icon -->
+ <script src="https://kit.fontawesome.com/78b204e6a3.js" crossorigin="anonymous"></script>
+</head>
+ 
+ 
+<body>
+<!-- NavBar -->
+<nav class="navbar ">
+   <div class="container">
+     <a class="navbar-brand" href="/"> 
+       <img src="https://i.imgur.com/IdpwQZw.png" alt="MakersBnB" width="30" height="24"> 
+     </a>
+     <span class="navbar-text">
+      MakersBnB
+    </span>
+     <button class ='btn nav-btn' type ='submit' name ='log_out' value ='Log out'>Log out</button>
+    
+   </div>
+ </nav>
+<div class="modal-body row">
+
+  <section>
+<div class="container">
+<div class="float-md-center">
+  <div class="jumbotron ">
+  <p class="nav-guest display-4"> Hello, <%= @user.guest_name %>! </p> 
+    <h2 class="display-4">Where are we taking you next?</h2>
+  <form class ='available ' action ='/spaces/availability' method ='post' >
+      <input class ='date btn-list' type ='date' name ='start_date' required>
+      <input class ='date btn-list' type ='date' name ='finish_date' required>
+      <button class="btn-list" type ='submit' name ='available' value ='Check availability'>Check availability</button>
     </form>
-  </div>
-</header>
 
-<section>
-<h1>Would you like to book a space?</h1>
-<form class ='available' action ='/spaces/availability' method ='post' >
-    <input class ='date' type ='date' name ='start_date' required>
-    <input class ='date' type ='date' name ='finish_date' required>
-    <button type ='submit' name ='available' value ='Check availability'>Check availability</button>
-  </form>
+  <form  action="/spaces/new" method="get">
+    <button class="btn-list" type="submit" value="List a space" >List a space</button>
+    </form>
 
-<form  action="/spaces/new" method="get">
-  <button type="submit" value="List a space" >List a space</button>
-  </form>
+    <form action ='/spaces/all' method ='post' >
+      <button class="btn-list" type ='submit' name ='listing' value ='View all spaces'>View all spaces</button>
+    </form>
+    </section>
 
-  <form action ='/spaces/all' method ='post' >
-    <button type ='submit' name ='listing' value ='View all spaces'>View all spaces</button>
-  </form>
-  </section>
+    <% if params[:available] %>
+      <% @available.each do |space| %>
+        <div class ='listing'>
+        <div class ='image'>image of property</div>
+        <div class ='main_info'>
+          <span class ='name'><%= space.name %></span>
+          <span class ='description'><%=space.description%></span>
+          <p class ='host'>Hosted by <%= space.guest_id %></p>
+          <span class ='price'>£<%=space.price%> per night</span>
+          <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
+        </div>
+      </div>
+      <%end%>
+    <%end%>
 
-  <% if params[:available] %>
-    <% @available.each do |space| %>
-      <div class ='listing'>
+    <% if params[:listing] %>
+    <% @listing.each do |space| %>
+    <div class ='listing'>
       <div class ='image'>image of property</div>
       <div class ='main_info'>
         <span class ='name'><%= space.name %></span>
-        <span class ='description'><%=space.description%></span>
+        <span class ='description'><%= space.description %></span>
         <p class ='host'>Hosted by <%= space.guest_id %></p>
         <span class ='price'>£<%=space.price%> per night</span>
         <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
       </div>
     </div>
     <%end%>
-  <%end%>
-
-  <% if params[:listing] %>
-  <% @listing.each do |space| %>
-  <div class ='listing'>
-    <div class ='image'>image of property</div>
-    <div class ='main_info'>
-      <span class ='name'><%= space.name %></span>
-      <span class ='description'><%= space.description %></span>
-      <p class ='host'>Hosted by <%= space.guest_id %></p>
-      <span class ='price'>£<%=space.price%> per night</span>
-      <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
-    </div>
+    <%end%>
   </div>
-  <%end%>
-  <%end%>
+  </div>
+
+  <!-- footer -->
+
+ 
+
+
+
+  <!-- End -->
 
 </body>
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap');
-
-  body {
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: white;
-    padding: 0;
-    margin: 0;
-  }
-
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 55px;
-    background-color: white;
-  }
-
-  section {
-    height: 75vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: url("https://news.airbnb.com/wp-content/uploads/sites/4/2020/04/Airbnb_France_Medieval_Village.jpg?fit=1024%2C576&resize=1920%2C1080");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    text-align: center;
-    animation: scale;
-  }
-
-  input:focus {
-  outline: none;
-  }
-
-  .btn {
-    width: 80px;
-    height: 35px;
-    border-radius: 100px;
-    border: none;
-    background-color: #222;
-    color: white;
-    font-weight: 500;
-    margin: 0 auto;
-  }
-
-  .logo {
-    font-weight: 500;
-  }
-
-  .n {
-    color: orange;
-    font-size: 1.2rem;
-  }
-
-  header p {
-    margin: 15px;
-  }
-
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-
-  .listing {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    border-bottom: 1px solid #777;
-  }
-
-   input, button {
-    padding: 12px;
-    border-radius: 25px;
-    border: 1px solid #f2f2f2;
-    margin: 5px;
-    background-color: #fff;
-    box-shadow: 1px 1px 2px grey;
-    color: #444;
-    width: 200px;
-    font-weight: 600;
-  }
-
-  .main_info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 40%;
-  }
-
-  .available {
-    display: flex;
-  }
-
-  .image {
-    height: 80%;
-    width: 60%;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-  }
-
-  .name, .description {
-    font-size: 1.4rem;
-  }
-
-  h1 {
-    font-weight: 600;
-    font-size: 3.8rem;
-    letter-spacing: -0.02em;;
-    color: #222;
-  }
-
-  </style>
+  
