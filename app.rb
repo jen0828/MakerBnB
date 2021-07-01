@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require_relative './lib/user'
 require './lib/space'
 
+
 class MakersBnB < Sinatra::Base
   enable :sessions, :method_override
 
@@ -12,11 +13,30 @@ class MakersBnB < Sinatra::Base
     erb(:sign_up)
   end
 
+  get '/login' do
+    erb(:login)
+  end
+
+  post '/confirm' do
+    user = User.authenticate(email: params[:email], password: params[:password])
+
+    if user == nil
+      redirect '/error'
+    else
+      session[:user_id] = user.id
+      redirect '/spaces'
+    end
+  end
+
+  get '/error' do
+    erb(:error)
+  end
+
   # Once the data has been inserted, it is transfered here, where the user object is created and the DB is updated:
 
   post '/successful' do
-   User.create(name: params[:name], email: params[:email], password: params[:password])
-   session[:name] = params[:name]
+   user = User.create(name: params[:name], email: params[:email], password: params[:password])
+   session[:user_id] = user.id
     redirect '/spaces'
   end
 
@@ -27,7 +47,7 @@ class MakersBnB < Sinatra::Base
   # Users will be redirected here to list or view spaces:
 
   get '/spaces' do
-    @name = User.find(session[:name])
+    @user = User.find(session[:user_id])
     @listing = Space.listing
     erb :'spaces/listings'
   end
@@ -35,18 +55,19 @@ class MakersBnB < Sinatra::Base
  # Users 
 
   post '/spaces/all' do
-    @name = User.find(session[:name])
+    @user = User.find(session[:user_id])
     @listing = Space.listing
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
-    @name = User.find(session[:name])
+    @user = User.find(session[:user_id])
     @listing = Space.listing
     erb :"/spaces/new"
   end
 
   post '/spaces/availability' do
+    @user = User.find(session[:user_id])
     Space.available(start_date: params[:start_date], finish_date: params[:finish_date])
     @name = User.find(session[:name])
     @available = Space.availability
@@ -54,7 +75,8 @@ class MakersBnB < Sinatra::Base
   end 
   
   post '/listing' do
-    @name = User.find(session[:name])
+    @user = User.find(session[:user_id])
+
     Space.create(name: params[:name], description: params[:description], price: params[:price], start_date: params[:start_date], finish_date: params[:finish_date])
     @listing = Space.listing
     erb :'spaces/listings'
