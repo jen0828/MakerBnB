@@ -1,7 +1,7 @@
 <header>
   <p class ='logo'>Makers BnB</p>
   <div>
-    <p> Logged in as, <%= @user.name %>! </p> 
+    <p> Logged in as, <%= @user.guest_name %>! </p> 
     <form class ='btn' action ='/logout' method ='post'>
       <button class ='btn' type ='submit' name ='log_out' value ='Log out'>Log out</button>
     </form>
@@ -32,7 +32,7 @@
       <div class ='main_info'>
         <span class ='name'><%= space.name %></span>
         <span class ='description'><%=space.description%></span>
-        <p class ='host'>Hosted by <%= @user.name %></p>
+        <p class ='host'>Hosted by <%= space.guest_id %></p>
         <span class ='price'>£<%=space.price%> per night</span>
         <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
       </div>
@@ -47,9 +47,9 @@
     <div class ='main_info'>
       <span class ='name'><%= space.name %></span>
       <span class ='description'><%= space.description %></span>
-      <p class ='host'>Hosted by <%= @user.name %></p>
+      <p class ='host'>Hosted by <%= space.guest_id %></p>
       <span class ='price'>£<%=space.price%> per night</span>
-      <span class ='availability'>Available from <b><%=space.start_date%></b> to <body><%=space.finish_date%></b></span>
+      <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
     </div>
   </div>
   <%end%>
@@ -94,11 +94,12 @@
     background-position: center;
     background-size: cover;
     text-align: center;
+    animation: scale;
   }
 
   input:focus {
   outline: none;
-}
+  }
 
   .btn {
     width: 80px;

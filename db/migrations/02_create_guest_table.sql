@@ -1,1 +1,1 @@
-CREATE TABLE guest (id SERIAL PRIMARY KEY, name VARCHAR(60), email VARCHAR(60), password VARCHAR(60));
+CREATE TABLE guest (id SERIAL PRIMARY KEY, guest_name VARCHAR(60), email VARCHAR(60), password VARCHAR(60));

@@ -48,8 +48,9 @@ class MakersBnB < Sinatra::Base
   # Once the data has been inserted, it is transfered here, where the user object is created and the DB is updated:
 
   post '/successful' do
-   user = User.create(name: params[:name], email: params[:email], password: params[:password])
+   user = User.create(guest_name: params[:guest_name], email: params[:email], password: params[:password])
    session[:user_id] = user.id
+   @user = session[:user_id]
     redirect '/login'
   end
 
@@ -61,6 +62,7 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces' do
     @user = User.find(session[:user_id])
+    @find = Space.find
     @listing = Space.listing
     redirect '/error' unless session[:user_status] == true
     erb :'spaces/listings'
@@ -70,14 +72,14 @@ class MakersBnB < Sinatra::Base
 
   post '/spaces/all' do
     @user = User.find(session[:user_id])
-    @listing = Space.listing
+    @find = Space.find
+    @listing = Space.find
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
     @user = User.find(session[:user_id])
-    @listing = Space.listing
-
+    @listing = Space.find
     redirect '/error' unless session[:user_status] == true
     erb :"/spaces/new"
   end
@@ -85,16 +87,15 @@ class MakersBnB < Sinatra::Base
   post '/spaces/availability' do
     @user = User.find(session[:user_id])
     Space.available(start_date: params[:start_date], finish_date: params[:finish_date])
-    @name = User.find(session[:name])
     @available = Space.availability
     erb :'spaces/listings'
   end 
   
   post '/listing' do
     @user = User.find(session[:user_id])
-
-    Space.create(name: params[:name], description: params[:description], price: params[:price], start_date: params[:start_date], finish_date: params[:finish_date])
-    @listing = Space.listing
+    @find = Space.find
+    Space.create(name: params[:name], description: params[:description], price: params[:price], start_date: params[:start_date], finish_date: params[:finish_date], guest_id: @user.id)
+    @listing = Space.find
     erb :'spaces/listings'
   end
 

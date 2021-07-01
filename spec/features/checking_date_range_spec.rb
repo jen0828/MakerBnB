@@ -2,7 +2,7 @@ feature 'Date range' do
   scenario 'User can see available bookings spaces' do
     visit("/")
     fill_in("email", with: "fabio@gmail.com")
-    fill_in("name", with: "Fabio")
+    fill_in("guest_name", with: "Fabio")
     fill_in("password", with: "test123")
     click_button("Sign up")
 
