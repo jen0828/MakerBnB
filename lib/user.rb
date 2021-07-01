@@ -5,6 +5,7 @@ class User < DbConnect
 	include BCrypt
 
 	attr_reader :id, :name, :email
+	attr_accessor :loged_in
 
 	def initialize(id:, name:, email:, password:)
 		@id = id

@@ -24,8 +24,20 @@ class MakersBnB < Sinatra::Base
       redirect '/error'
     else
       session[:user_id] = user.id
+      user.loged_in = true
       redirect '/spaces'
     end
+  end
+
+  get '/logout' do
+    erb(:logout)
+  end
+
+  post '/logout' do
+    user = User.find(session[:user_id])
+    user.loged_in = false
+
+    redirect '/goodbye'
   end
 
   get '/error' do
@@ -82,7 +94,9 @@ class MakersBnB < Sinatra::Base
     erb :'spaces/listings'
   end
 
-  
+  get '/goodbye' do
+    erb(:goodbye)
+  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0

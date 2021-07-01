@@ -1,5 +1,6 @@
 feature 'Authentication' do
-	context 'Login' do
+
+	context 'login' do
 		let!(:user) { User.create(name: "Fabio", email: 'test@test.com', password: 'test123')}
 	  
 		scenario 'user logs in' do
@@ -21,6 +22,14 @@ feature 'Authentication' do
 	
 			expect(page).to have_content('It seems like your email address or password are incorrect!')
 		end
+  end
+
+	context 'logout' do
+		scenario 'A user logs out' do
+			visit('/logout')
+			click_button('Log me out!')
 		
+			expect(page).to have_content('/goodbye')
+		end
 	end
 end

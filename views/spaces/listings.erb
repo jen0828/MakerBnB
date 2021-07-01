@@ -1,3 +1,5 @@
+<body>
+
 <h1> Welcome, <%= @user.name %>!</h1> 
 
 <h1>Would you like to book a space?</h1>
@@ -40,12 +42,13 @@
       <span class ='description'><%= space.description %></span>
       <p class ='host'>Hosted by <%= @user.name %></p>
       <span class ='price'>£<%=space.price%> per night</span>
-      <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
+      <span class ='availability'>Available from <b><%=space.start_date%></b> to <body><%=space.finish_date%></b></span>
     </div>
   </div>
   <%end%>
   <%end%>
 
+</body>
   <style>
 
   body {
