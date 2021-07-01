@@ -8,6 +8,8 @@ describe Space do
       sig_in_log_in
       space = Space.create(name: "House", description: 'Beautiful property near the beach', price: 50, start_date: '2021-06-03' , finish_date: '2021-06-04', guest_id: 1)
 
+
+
       expect(space.name).to eq('House')
       expect(space.description).to eq('Beautiful property near the beach')
       expect(space.price).to eq('50')
@@ -18,10 +20,12 @@ describe Space do
 
   describe '.listing' do
     it 'lists all the spaces' do
+
       sig_in_log_in
       Space.create(name: "House", description: 'Beautiful property near the beach', price: 50, start_date: '2021-06-03' , finish_date: '2021-06-04', guest_id: 1)
       Space.create(name: "Flat", description: 'Beautiful property at the heart of the city', price: 45, start_date: '2021-07-13' , finish_date: '2021-07-24', guest_id: 2)
       result = Space.find
+
 
       expect(result[0].name).to eq('House')
       expect(result[0].description).to eq('Beautiful property near the beach')
@@ -36,4 +40,3 @@ describe Space do
       expect(result[1].finish_date).to eq('2021-07-24')
     end
   end
-end
