@@ -1,19 +1,27 @@
-<h1> Welcome, <%= @name.name %>!</h1> 
-<h1>Would you like to book a space?</h1>
+<header>
+<p class ='logo'>Makers BnB</p>
+<div>
+<p> Logged in as, <%= @name.name %>! </p> 
+<button class ='btn' type ='submit' name ='log_out' value ='Log out'>Log out</button>
+</div>
+</header>
 
+<section>
+<h1>Would you like to book a space?</h1>
 <form class ='available' action ='/spaces/availability' method ='post' >
-    <input type ='date' name ='start_date' required>
-    <input type ='date' name ='finish_date' required>
-    <input type ='submit' name ='available' value ='Check availability'>
+    <input class ='date' type ='date' name ='start_date' required>
+    <input class ='date' type ='date' name ='finish_date' required>
+    <button type ='submit' name ='available' value ='Check availability'>Check availability</button>
   </form>
 
 <form  action="/spaces/new" method="get">
-  <input type="submit" value="List a space" />
+  <button type="submit" value="List a space" >List a space</button>
   </form>
 
   <form action ='/spaces/all' method ='post' >
-    <input type ='submit' name ='listing' value ='View all spaces'>
+    <button type ='submit' name ='listing' value ='View all spaces'>View all spaces</button>
   </form>
+  </section>
 
   <% if params[:available] %>
     <% @available.each do |space| %>
@@ -46,14 +54,73 @@
   <%end%>
 
   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap');
 
   body {
+    font-family: 'Roboto', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #ddd;
+    background-color: white;
+    padding: 0;
+    margin: 0;
   }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 55px;
+    background-color: white;
+  }
+
+  section {
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("https://news.airbnb.com/wp-content/uploads/sites/4/2020/04/Airbnb_France_Medieval_Village.jpg?fit=1024%2C576&resize=1920%2C1080");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+  }
+
+  input:focus {
+  outline: none;
+}
+
+  .btn {
+    width: 80px;
+    height: 35px;
+    border-radius: 100px;
+    border: none;
+    background-color: #222;
+    color: white;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-weight: 500;
+  }
+
+  .n {
+    color: orange;
+    font-size: 1.2rem;
+  }
+
+  header p {
+    margin: 15px;
+  }
+
   div {
     display: flex;
     align-items: center;
@@ -68,14 +135,16 @@
     border-bottom: 1px solid #777;
   }
 
-   input {
-    padding: 10px;
-    border: none;
+   input, button {
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid #f2f2f2;
     margin: 5px;
-    background-color: white;
-    border-radius: 5px;
-    width: 240px;
-    box-shadow: 1px 1px 1px #777;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px grey;
+    color: #444;
+    width: 200px;
+    font-weight: 600;
   }
 
   .main_info {
@@ -93,11 +162,18 @@
     height: 80%;
     width: 60%;
     border-radius: 5px;
-    background-color: white;
+    background-color: #f2f2f2;
   }
 
   .name, .description {
     font-size: 1.4rem;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: 3.8rem;
+    letter-spacing: -0.02em;;
+    color: #222;
   }
 
   </style>
