@@ -6,6 +6,6 @@ feature 'sigining up' do
     fill_in("password", with: "123")
     click_button("Sign up") 
 
-    expect(page).to have_content("Welcome, Fabio!")
+    expect(page).to have_content("Please fill in your details below:")
   end
 end

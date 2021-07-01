@@ -25,6 +25,7 @@ class MakersBnB < Sinatra::Base
     else
       session[:user_id] = user.id
       user.loged_in = true
+      session[:user_status] = user.loged_in 
       redirect '/spaces'
     end
   end
@@ -36,6 +37,7 @@ class MakersBnB < Sinatra::Base
   post '/logout' do
     user = User.find(session[:user_id])
     user.loged_in = false
+    session[:user_status] = user.loged_in
 
     redirect '/goodbye'
   end
@@ -49,7 +51,7 @@ class MakersBnB < Sinatra::Base
   post '/successful' do
    user = User.create(name: params[:name], email: params[:email], password: params[:password])
    session[:user_id] = user.id
-    redirect '/spaces'
+    redirect '/login'
   end
 
   get '/booking' do
@@ -61,6 +63,7 @@ class MakersBnB < Sinatra::Base
   get '/spaces' do
     @user = User.find(session[:user_id])
     @listing = Space.listing
+    redirect '/error' unless session[:user_status] == true
     erb :'spaces/listings'
   end
 
@@ -75,6 +78,8 @@ class MakersBnB < Sinatra::Base
   get '/spaces/new' do
     @user = User.find(session[:user_id])
     @listing = Space.listing
+
+    redirect '/error' unless session[:user_status] == true
     erb :"/spaces/new"
   end
 

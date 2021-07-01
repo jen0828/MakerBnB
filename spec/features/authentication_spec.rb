@@ -6,7 +6,7 @@ feature 'Authentication' do
 		scenario 'user logs in' do
 			visit('/login')
 	
-			fill_in('email', with: user.email)
+			fill_in('email', with: 'test@test.com')
 			fill_in('password', with: 'test123')
 			click_button('Login')
 	

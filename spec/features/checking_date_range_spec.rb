@@ -3,8 +3,12 @@ feature 'Date range' do
     visit("/")
     fill_in("email", with: "fabio@gmail.com")
     fill_in("name", with: "Fabio")
-    fill_in("password", with: "123")
+    fill_in("password", with: "test123")
     click_button("Sign up")
+
+    fill_in('email', with: "fabio@gmail.com")
+		fill_in('password', with: 'test123')
+		click_button('Login')
 
     click_button('List a space')
     fill_in('name', with: 'Beach house')
