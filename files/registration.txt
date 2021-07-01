@@ -1,0 +1,7 @@
+Thank you for subscribing to MakersBnB!
+
+Please login here 'http://localhost:9292/login'
+
+Thank you!
+
+makersbnb-jf2c2

@@ -17,7 +17,9 @@ class Space < DbConnect
   def self.create(name:, description:, price:, start_date:, finish_date:, guest_id:)
     connection = DbConnect.new.connect
     result = connection.exec("INSERT INTO space (name, description, price, start_date, finish_date, guest_id) VALUES ('#{name}', '#{description}', #{price}, '#{start_date}', '#{finish_date}', '#{guest_id}') RETURNING id, name, description, price, start_date, finish_date, guest_id;")
-    Space.new(id: space['id'], name: result[0]['name'], description: result[0]['description'], price: result[0]['price'], start_date: result[0]['start_date'], finish_date: result[0]['finish_date'], guest_id: result[0]['guest_id'])
+   
+      Space.new(id: result[0]['id'], name: result[0]['name'], description: result[0]['description'], price: result[0]['price'], start_date: result[0]['start_date'], finish_date: result[0]['finish_date'], guest_id: result[0]['guest_id'])
+   
   end
 
   def self.listing
