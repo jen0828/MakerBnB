@@ -36,6 +36,9 @@
         <span class ='price'>£<%=space.price%> per night</span>
         <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
       </div>
+        <form action ='/spaces/booking' method ='get' >
+          <button type ='submit' name ='<%= space.id%>' value ='Book'>Book</button>
+        </form>
     </div>
     <%end%>
   <%end%>
@@ -51,6 +54,9 @@
       <span class ='price'>£<%=space.price%> per night</span>
       <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
     </div>
+    <form action ='/spaces/booking' method ='get' >
+          <button class ='btn_book' type ='submit' name ='<%= space.id%>' value ='Book'>Book</button>
+        </form>
   </div>
   <%end%>
   <%end%>
@@ -95,6 +101,12 @@
     background-size: cover;
     text-align: center;
     animation: scale;
+  }
+
+  .btn_book {
+    background-color: #333;
+    color: white;
+    box-shadow: none;
   }
 
   input:focus {
