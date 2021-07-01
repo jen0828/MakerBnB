@@ -1,18 +1,11 @@
 require 'space'
 require 'mbnb'
 
-describe Space do
-  it 'allows a user to create a space' do
-    space = Space.new(name: 'hut', description: '3 bed hut', price: '50', start_date: '2020-02-08', finish_date: '2020-02-11')
-    bnb = MbNb.new
-    bnb.add(space)
-    listing = bnb.spaces
-    expect(listing.name).to eq 'hut'
-  end
 
   describe '.create' do
     it 'creates a new space' do
-      space = Space.create(name: "House", description: 'Beautiful property near the beach', price: 50, start_date: '2021-06-03' , finish_date: '2021-06-04')
+      User.create(id: 1, guest_name: 'Fabio', email: 'fabio@gmail.com', password: 'Fabio123!')
+      space = Space.create(id: 1, name: "House", description: 'Beautiful property near the beach', price: 50, start_date: '2021-06-03' , finish_date: '2021-06-04', guest_id: 1)
 
       expect(space.name).to eq('House')
       expect(space.description).to eq('Beautiful property near the beach')
@@ -24,8 +17,10 @@ describe Space do
 
   describe '.listing' do
     it 'lists all the spaces' do
-      Space.create(name: "House", description: 'Beautiful property near the beach', price: 50, start_date: '2021-06-03' , finish_date: '2021-06-04')
-      Space.create(name: "Flat", description: 'Beautiful property at the heart of the city', price: 45, start_date: '2021-07-13' , finish_date: '2021-07-24')
+      User.create(id: 1, guest_name: 'Fabio', email: 'fabio@gmail.com', password: 'Fabio123!')
+      User.create(id: 2, guest_name: 'Fabio', email: 'fabio@gmail.com', password: 'Fabio123!')
+      Space.create(id: 1, name: "House", description: 'Beautiful property near the beach', price: 50, start_date: '2021-06-03' , finish_date: '2021-06-04', guest_id: 1)
+      Space.create(id: 2, name: "Flat", description: 'Beautiful property at the heart of the city', price: 45, start_date: '2021-07-13' , finish_date: '2021-07-24', guest_id: 2)
       result = Space.listing
 
       expect(result[0].name).to eq('House')
@@ -41,4 +36,3 @@ describe Space do
       expect(result[1].finish_date).to eq('2021-07-24')
     end
   end
-end
