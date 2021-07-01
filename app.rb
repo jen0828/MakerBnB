@@ -99,6 +99,10 @@ class MakersBnB < Sinatra::Base
     erb :'spaces/listings'
   end
 
+  get '/spaces/booking' do
+    erb :"spaces/booking"
+  end
+
   get '/goodbye' do
     erb(:goodbye)
   end
