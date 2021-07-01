@@ -13,7 +13,7 @@ group :test do
 end
 
 group :development do
-  gem 'bcrypt'
+  gem 'bcrypt', '3.1.16'
   gem 'launchy'
   gem 'rexml'
   gem 'selenium-webdriver'
