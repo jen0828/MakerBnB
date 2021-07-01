@@ -1,5 +1,4 @@
 require 'space'
-require 'mbnb'
 require_relative 'web_helpers'
 
 describe Space do
@@ -30,7 +29,7 @@ describe Space do
   
       Space.create(name: "House", description: 'Beautiful property near the beach', price: 50, start_date: '2021-06-03' , finish_date: '2021-06-04', guest_id: result.id)
       Space.create(name: "Flat", description: 'Beautiful property at the heart of the city', price: 45, start_date: '2021-07-13' , finish_date: '2021-07-24', guest_id: result_2.id)
-      result = Space.find
+      result = Space.listing
 
 
     

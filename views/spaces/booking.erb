@@ -1,0 +1,129 @@
+<h1><%= @id.guest_name.capitalize %>, please complete your booking for...</h1>
+
+<div class ='listing'>
+  <div class ='image'></div>
+    <div class ='main_info'>
+      <span class ='name'><%= @booking.name %></span>
+      <span class ='description'><%=@booking.description%></span>
+        <p class ='host'>Hosted by <%= @user.guest_name %></p>
+      <span class ='price'>£<%=@booking.price%> per night</span>
+     <span class ='availability'>Available from <b><%=@booking.start_date%></b> to <b><%=@booking.finish_date%></b></span>
+</div>
+</div>
+
+<form action ='' method ='post' >
+    <input class ='date' type ='date' name ='start_date' required>
+    <input class ='date' type ='date' name ='finish_date' required>
+    <select>
+      <option value = 0>How many nights</option>
+      <option value = 1>1</option>
+      <option value = 2>2</option>
+      <option value = 3>3</option>
+      <option value = 4>4</option>
+      </select>
+    <button type ='submit' name ='available' value ='Book now'>Book now</button>
+  </form>
+
+  <div>
+  <p class ='back'><a href ='/spaces'><< Changed your mind?</a></p>
+</div>
+
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap');
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+  }
+
+  form {
+    margin: 1.5rem;
+  }
+
+  .btn {
+    width: 80px;
+    height: 35px;
+    border-radius: 100px;
+    border: none;
+    background-color: #222;
+    color: white;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+
+  .back a {
+    position: absolute;
+    left: 0;
+    font-size: 1.4rem;
+    color: lightblue;
+    margin-left: 105px;
+    text-decoration: none;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .listing {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    border-bottom: 1px solid #777;
+  }
+
+   input, button, select, option {
+    padding: 16px;
+    border-radius: 25px;
+    border: 1px solid #f2f2f2;
+    margin: 5px;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px grey;
+    color: #444;
+    width: 240px;
+    font-weight: 600;
+  }
+
+  .main_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+  }
+
+  .image {
+    height: 80%;
+    width: 60%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    background-image: url('https://static.homesandproperty.co.uk/s3fs-public/thumbnails/image/2018/04/09/11/countryhousesboweredgreen.jpg?width=640');
+   background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .name, .description {
+    font-size: 1.4rem;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: 3.8rem;
+    letter-spacing: -0.02em;;
+    color: #222;
+  }
+
+   input:focus, select:focus {
+  outline: none;
+  }
+
+  </style>
