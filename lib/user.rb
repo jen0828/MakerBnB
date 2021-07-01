@@ -35,7 +35,7 @@ class User < DbConnect
 		
 		result = connection.query("SELECT * FROM guest WHERE id = '#{id}';")		
 		result.map do |row|
-			new(id: row['id'], name: row['name'], email: row['email'], password: row['password'])
+			User.new(id: row['id'], name: row['name'], email: row['email'], password: row['password'])
 		end.first
 	end
 

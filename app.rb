@@ -19,7 +19,6 @@ class MakersBnB < Sinatra::Base
 
   post '/confirm' do
     user = User.authenticate(email: params[:email], password: params[:password])
-
     if user == nil
       redirect '/error'
     else
