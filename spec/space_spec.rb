@@ -40,3 +40,4 @@ describe Space do
       expect(result[1].finish_date).to eq('2021-07-24')
     end
   end
+end
