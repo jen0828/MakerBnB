@@ -29,7 +29,7 @@ class User < DbConnect
 
 	def self.authenicate(email:, password:)
 		result = DbConnect.new.connect.query("SELECT * FROM guest WHERE email = '#{email}'")
-		
+
 		return unless result.any?
 		return unless BCrypt::Password.create(result[0]['password']) == password
 

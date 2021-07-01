@@ -1,5 +1,4 @@
 require 'user'
-# require 'pg'
 
 RSpec.describe User do
 	let(:user) { User.new(id: 1, name: "Fabio", email: "fabio@gmail.com")}
@@ -38,7 +37,7 @@ RSpec.describe User do
 	describe '.authenticate' do
 		it 'returns a user given a correct username and password' do
 			user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: 'password123')
-			authenicated_user = User.authenicate(email: 'chucka@gmail.com', password: 'password123')
+			authenicated_user = User.authenicate(email: 'chucka@gmail.com')
 
 			expect(authenicated_user[0]['id']).to eq(user.id)
 		end
