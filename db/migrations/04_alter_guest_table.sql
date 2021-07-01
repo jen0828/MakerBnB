@@ -1,0 +1,1 @@
+ALTER TABLE guest RENAME COLUMN name TO guest_name;

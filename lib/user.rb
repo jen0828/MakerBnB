@@ -4,12 +4,12 @@ require 'bcrypt'
 class User < DbConnect 
 	include BCrypt
 
-	attr_reader :id, :name, :email
+	attr_reader :id, :guest_name, :email
 	attr_accessor :loged_in
 
-	def initialize(id:, name:, email:, password:)
+	def initialize(id:, guest_name:, email:, password:)
 		@id = id
-		@name = name
+		@guest_name = guest_name
 		@email = email
 		@encrypted_password = password
 	end
@@ -18,13 +18,13 @@ class User < DbConnect
 		password ||= Password.new(@encrypted_password)
 	end
 	
-	def self.create(name:, email:, password:)
+	def self.create(guest_name:, email:, password:)
 		password_hash = BCrypt::Password.create(password)
 		connection = DbConnect.new.connect
 
-		result = connection.query("INSERT INTO guest (name, email, password) VALUES ('#{name}', '#{email}', '#{password_hash}') RETURNING id, name, email, password;")
+		result = connection.query("INSERT INTO guest (guest_name, email, password) VALUES ('#{guest_name}', '#{email}', '#{password_hash}') RETURNING id, guest_name, email, password;")
 		result.map do |row|
-			new(id: row['id'], name: row['name'], email: row['email'], password: row['password'])
+			new(id: row['id'], guest_name: row['guest_name'], email: row['email'], password: row['password'])
 		end.first
 	end
 
@@ -35,7 +35,7 @@ class User < DbConnect
 		
 		result = connection.query("SELECT * FROM guest WHERE id = '#{id}';")		
 		result.map do |row|
-			User.new(id: row['id'], name: row['name'], email: row['email'], password: row['password'])
+			User.new(id: row['id'], guest_name: row['guest_name'], email: row['email'], password: row['password'])
 		end.first
 	end
 
@@ -46,7 +46,7 @@ class User < DbConnect
 		
 		result = connection.query("SELECT * FROM guest WHERE email = '#{email}';")		
 		result.map do |row|
-			new(id: row['id'], name: row['name'], email: row['email'], password: row['password'])
+			new(id: row['id'], guest_name: row['guest_name'], email: row['email'], password: row['password'])
 		end.first
 	end
 

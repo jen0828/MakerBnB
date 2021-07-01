@@ -1,7 +1,7 @@
 feature 'Authentication' do
 
 	context 'login' do
-		let!(:user) { User.create(name: "Fabio", email: 'test@test.com', password: 'test123')}
+		let!(:user) { User.create(guest_name: "Fabio", email: 'test@test.com', password: 'test123')}
 	  
 		scenario 'user logs in' do
 			visit('/login')
