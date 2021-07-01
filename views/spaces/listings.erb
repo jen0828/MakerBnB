@@ -30,7 +30,7 @@
       <div class ='main_info'>
         <span class ='name'><%= space.name %></span>
         <span class ='description'><%=space.description%></span>
-        <p class ='host'>Hosted by <%=@name.name%></p>
+        <p class ='host'>Hosted by <%= @user.name %></p>
         <span class ='price'>£<%=space.price%> per night</span>
         <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
       </div>
@@ -44,15 +44,16 @@
     <div class ='image'>image of property</div>
     <div class ='main_info'>
       <span class ='name'><%= space.name %></span>
-      <span class ='description'><%=space.description%></span>
-      <p class ='host'>Hosted by <%=@name.name%></p>
+      <span class ='description'><%= space.description %></span>
+      <p class ='host'>Hosted by <%= @user.name %></p>
       <span class ='price'>£<%=space.price%> per night</span>
-      <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
+      <span class ='availability'>Available from <b><%=space.start_date%></b> to <body><%=space.finish_date%></b></span>
     </div>
   </div>
   <%end%>
   <%end%>
 
+</body>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap');
 

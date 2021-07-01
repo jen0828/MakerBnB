@@ -1,0 +1,38 @@
+<body>
+
+<h1>Are you sure you would like to logout?</h1>
+
+<form action="/logout" method="post">
+	<input type='submit' value='Log me out!' />
+</form>
+
+<a href="/spaces"><h3>Go back to viewing your next Home-Sweet-Home</h3></a>
+
+<a href="/">Back to home page</a>
+
+</body>
+
+<style>
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ddd;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    padding: 10px;
+    border: none;
+    margin: 5px;
+    border-radius: 5px;
+    width: 240px;
+  }
+
+</style>
