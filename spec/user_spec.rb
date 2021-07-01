@@ -1,7 +1,8 @@
 require 'user'
+require 'bcrypt'
 
 RSpec.describe User do
-	let(:user) { User.new(id: 1, name: "Fabio", email: "fabio@gmail.com")}
+	let(:user) { User.new(id: 1, name: "Fabio", email: "fabio@gmail.com", password: "password123")}
 
 	it 'has different attributes' do
 		expect(user.name).to eq('Fabio')
@@ -9,7 +10,7 @@ RSpec.describe User do
 	end
 
 	describe '.create' do
-	 it 'creates a new database' do
+	 it 'creates a new user instance that is also stored into the DB' do
 		connection = PG.connect(dbname: 'makersbnb_test')
 		guest = User.create(name: 'Fabio', email: 'fabio@gmail.com', password: 'Fabio123!')
 		
@@ -26,20 +27,41 @@ RSpec.describe User do
 
 	describe '.find' do
 		it 'finds a user by id' do
-			user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: 'password123')
+			password_hash = BCrypt::Password.create('password123')
+			user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: password_hash)
 			result = User.find(user.id)
 
-			expect(result[0]['id']).to eq(user.id)
-			expect(result[0]['email']).to eq(user.email)
+			expect(result.id).to eq(user.id)
+			expect(result.email).to eq(user.email)
 		end
 	end
 
 	describe '.authenticate' do
-		it 'returns a user given a correct username and password' do
-			user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: 'password123')
-			authenicated_user = User.authenicate(email: 'chucka@gmail.com')
+		context 'when valid' do
+			it 'returns a user given a correct username and password' do
+				user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: 'password123')
+				authenicated_user = User.authenticate(email: 'chucka@gmail.com', password: 'password123')
+	
+				expect(authenicated_user.password).to eql(user.password)
+			end
+		end
 
-			expect(authenicated_user[0]['id']).to eq(user.id)
+		context 'when password is invalid' do
+			it 'returns nil' do
+				user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: 'password123')
+				authenicated_user = User.authenticate(email: 'chucka@gmail.com', password: 'password456')
+	
+				expect(authenicated_user).to eq(nil)
+			end
+		end
+
+		context 'when email is invalid' do
+			it 'returns nil' do
+				user = User.create(name: 'Chucka', email: 'chucka@gmail.com', password: 'password123')
+				authenicated_user = User.authenticate(email: 'incorrect@test.com', password: 'password123')
+	
+				expect(authenicated_user).to eq(nil)
+			end
 		end
 	end
 end

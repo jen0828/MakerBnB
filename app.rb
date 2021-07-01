@@ -18,8 +18,10 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/confirm' do
-    result = DbConnect.new.connect.query("SELECT * FROM guest WHERE email = '#{params[:email]}'")
-    user = User.new(result[0]['id'], result[0]['name'], result[0]['email'])
+    # result = DbConnect.new.connect.query("SELECT * FROM guest WHERE email = '#{params[:email]}'")
+    # user = User.new(result[0]['id'], result[0]['name'], result[0]['email'])
+
+    user = User.authenicate(email: params[:email], password: params[:password])
 
     session[:user_id] = user.id
     redirect '/spaces'
@@ -60,12 +62,14 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/availability' do
+    @user = User.find(session[:user_id])
     Space.available(start_date: params[:start_date], finish_date: params[:finish_date])
     @available = Space.availability
     erb :'spaces/listings'
   end 
   
   post '/listing' do
+    @user = User.find(session[:user_id])
     Space.create(name: params[:name], description: params[:description], price: params[:price], start_date: params[:start_date], finish_date: params[:finish_date])
     @listing = Space.listing
     erb :'spaces/listings'
