@@ -112,7 +112,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
-  bcrypt
+  bcrypt (= 3.1.16)
   capybara
   launchy
   pg

@@ -1,9 +1,11 @@
 <header>
-<p class ='logo'>Makers BnB</p>
-<div>
-<p> Logged in as, <%= @name.name %>! </p> 
-<button class ='btn' type ='submit' name ='log_out' value ='Log out'>Log out</button>
-</div>
+  <p class ='logo'>Makers BnB</p>
+  <div>
+    <p> Logged in as, <%= @user.name %>! </p> 
+    <form class ='btn' action ='/logout' method ='post'>
+      <button class ='btn' type ='submit' name ='log_out' value ='Log out'>Log out</button>
+    </form>
+  </div>
 </header>
 
 <section>
