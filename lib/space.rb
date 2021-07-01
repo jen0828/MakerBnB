@@ -14,7 +14,7 @@ class Space < DbConnect
     @guest_id = guest_id
   end
 
-  def self.create(id:, name:, description:, price:, start_date:, finish_date:, guest_id:)
+  def self.create(name:, description:, price:, start_date:, finish_date:, guest_id:)
     connection = DbConnect.new.connect
     result = connection.exec("INSERT INTO space (name, description, price, start_date, finish_date, guest_id) VALUES ('#{name}', '#{description}', #{price}, '#{start_date}', '#{finish_date}', '#{guest_id}') RETURNING id, name, description, price, start_date, finish_date, guest_id;")
 
