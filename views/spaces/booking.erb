@@ -11,17 +11,19 @@
 </div>
 </div>
 
-<form action ='/spaces/:id/booking/confirm' method ='post' >
+
+
+<form action ='/spaces/id:/booking/confirm' method ='post' >
     <input class ='date' type ='date' name ='start_date' required>
     <input class ='date' type ='date' name ='finish_date' required>
-    <select>
+    <select name ='nights'>
       <option value = 0>How many nights</option>
       <option value = 1 name="nights">1</option>
       <option value = 2 name="nights">2</option>
       <option value = 3 name="nights">3</option>
       <option value = 4 name="nights">4</option>
       </select>
-    <button type ='submit' name ='available' value ='Book now'>Book now</button>
+    <button type ='submit' name ='available' value ='<%= @booking.id%>'>Book now</button>
   </form>
 
   <div>
@@ -29,7 +31,8 @@
 </div>
 
 <% if params[:available] %>
-  <%= @space %>
+  <%= @nights %>
+  <%= @id.guest_name %>
 <% end %>
 
   <style>

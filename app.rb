@@ -102,14 +102,18 @@ class MakersBnB < Sinatra::Base
   get '/spaces/:id/booking' do
     @id = User.find(session[:user_id])
     @user = User.find(params[:book])
-    @booking = Space.find(params[:book])  
-
-    session[:space] = @booking.price
+    @booking = Space.find(params[:book])
+    session[:id] = params[:user_id]
+    session[:user] = params[:book]
+    session[:booking] = params[:book] 
     erb :"spaces/booking"
   end
 
-  post '/spaces/:id/booking/confirm' do
-    @space = Space.find(params[:book])
+  post '/spaces/id:/booking/confirm' do
+    @nights = params[:nights]
+    @id = User.find(session[:id])
+    @user = User.find(session[:user])
+    @booking = Space.find(session[:booking])  
     erb :"spaces/booking"
   end
 
