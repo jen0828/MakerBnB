@@ -9,6 +9,39 @@ list and book spaces, and to give warnings if a space has already been booked.
 
 For furter functionalities and cosmetics, we will dedicate the following 2 days.
 
+# User Stories
+
+```
+As a user who has loads of space
+So that i can share space
+I want to be able to sign up as a new user
+
+As a user who has loads of space
+So that i can share some space
+I want to be able to upload a space
+
+As a user who has loads of space
+So i can list multiple spaces
+I want to be able to upload multiple spaces
+
+As an user
+In order to have many clients book my space
+I would like to show the range of dates where my space is available
+
+As an user
+So I don't overbook
+I want to know if a place is already booked
+
+As a user
+To book a space
+I want to be able to login
+
+As a user
+To rent a space
+I want to be able to book a space
+
+```
+
 # Class Modelling
 
 We decided to focus on a `space` and `user` class. However, we opted to add an additional class called `mbnb` for `space` storage, so to speak.
