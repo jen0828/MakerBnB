@@ -13,28 +13,28 @@ For furter functionalities and cosmetics, we will dedicate the following 2 days.
 
 ```
 As a user who has loads of space
-So that i can share space
+So that I can share space
 I want to be able to sign up as a new user
 
 As a user who has loads of space
-So that i can share some space
+So that I can share some space
 I want to be able to upload a space
 
 As a user who has loads of space
-So i can list multiple spaces
+So I can list multiple spaces
 I want to be able to upload multiple spaces
 
-As an user
+As a user
 In order to have many clients book my space
 I would like to show the range of dates where my space is available
 
-As an user
+As a user
 So I don't overbook
 I want to know if a place is already booked
 
 As a user
 To book a space
-I want to be able to login
+I want to be able to log in
 
 As a user
 To rent a space
