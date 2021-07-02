@@ -1,9 +1,27 @@
+<head>
+<title>MakersBnB</title>
+ <link rel="icon" href="https://i.imgur.com/nDkbAZs.png">
+ <!-- Font -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,700;1,200;1,300;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<!--  Bootstrap -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+
+<!-- favcon icon -->
+ <script src="https://kit.fontawesome.com/78b204e6a3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
 <header>
-  <p class ='logo'>Makers BnB</p>
+  <img src="https://i.imgur.com/IdpwQZw.png" alt="MakersBnB" width="40" height="40">
   <div>
     <p> Logged in as, <%= @user.guest_name %>! </p> 
-    <form class ='btn' action ='/logout' method ='post'>
-      <button class ='btn' type ='submit' name ='log_out' value ='Log out'>Log out</button>
+    <form action ='/logout' method ='post'>
+     <button class="btn nav-btn" type="‘submit’" name="‘log_out’" value="‘Log" out’="">Log out</button>
     </form>
   </div>
 </header>
@@ -25,6 +43,8 @@
   </form>
   </section>
 
+  <%# Each space when user clicks availability %>
+<div id ='spaces'></div>
   <% if params[:available] %>
     <% @available.each do |space| %>
       <div class ='listing'>
@@ -43,9 +63,11 @@
     <%end%>
   <%end%>
 
+  <%# Each space when user clicks view all listings %>
+
   <% if params[:listing] %>
   <% @listing.each do |space| %>
-  <div class ='listing'>
+  <div id ='spaces' class ='listing'>
     <div class ='image'>image of property</div>
     <div class ='main_info'>
       <span class ='name'><%= space.name %></span>
@@ -54,14 +76,17 @@
       <span class ='price'>£<%=space.price%> per night</span>
       <span class ='availability'>Available from <b><%=space.start_date%></b> to <b><%=space.finish_date%></b></span>
     </div>
-    <form action ='/spaces/<%= space.id %>/booking' method ='get' >
-      <button class ='btn_book' type ='submit' name ='book' value ='<%= space.id %>'>Book</button>
-    </form>
+      <form action ='/spaces/<%= space.id %>/booking' method ='get' >
+        <button class ='btn_book' type ='submit' name ='book' value ='<%= space.id %>'>Book</button>
+      </form>
+    </div>
+   </div>
   </div>
   <%end%>
   <%end%>
 
 </body>
+  
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap');
 
@@ -74,6 +99,14 @@
     background-color: white;
     padding: 0;
     margin: 0;
+    scroll-behaviour: smooth;
+  }
+
+  a {
+    text-decoration: none;
+    border: none;
+    list-style: none;
+    color: #444;
   }
 
   header {
@@ -85,11 +118,11 @@
     left: 0;
     top: 0;
     height: 55px;
-    background-color: white;
+    background-color: #ffd3b5;
   }
 
   section {
-    height: 75vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -106,14 +139,15 @@
   .btn_book {
     background-color: #333;
     color: white;
-    box-shadow: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: none;
   }
 
   input:focus {
   outline: none;
   }
 
-  .btn {
+  .header_btn {
     width: 80px;
     height: 35px;
     border-radius: 100px;
@@ -121,11 +155,15 @@
     background-color: #222;
     color: white;
     font-weight: 500;
-    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
-
+  .nav-btn:hover {
+  background-color: #00A699;
+  color: white;
+ } 
   .logo {
-    font-weight: 500;
+    height: 40px;
+    width: 50px;
   }
 
   .n {
@@ -148,7 +186,15 @@
     display: flex;
     justify-content: space-between;
     width: 80%;
+    height: 270px;
     border-bottom: 1px solid #777;
+  }
+
+  .btn_book:hover, .header_btn {
+    border-radius: 20px;
+    transition: .1s ease-in-out;
+    border: none;
+    transform: scaleX(1.05);
   }
 
    input, button {
@@ -157,7 +203,7 @@
     border: 1px solid #f2f2f2;
     margin: 5px;
     background-color: #fff;
-    box-shadow: 1px 1px 2px grey;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     color: #444;
     width: 200px;
     font-weight: 600;
@@ -181,15 +227,19 @@
     background-color: #f2f2f2;
   }
 
-  .name, .description {
+  .description {
     font-size: 1.4rem;
   }
 
+  .name {
+    font-size: 1.7rem;
+    font-weight: 500;
+  }
+
   h1 {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 3.8rem;
     letter-spacing: -0.02em;;
     color: #222;
   }
-
-  </style>
+</style>

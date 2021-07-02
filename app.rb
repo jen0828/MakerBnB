@@ -12,6 +12,8 @@ class MakersBnB < Sinatra::Base
   # Users are first directed to the landing page, where they have the ability to sign up:
 
   get '/' do
+    session.clear
+    flash[:notice] = 'You have signed out.'
     erb(:sign_up)
   end
 
