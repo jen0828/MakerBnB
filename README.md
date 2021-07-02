@@ -1,4 +1,4 @@
-# MakerBnB
+## MakerBnB
 
 This project aims to model Airbnb as web app using Sinatra, PG, and Capybara for feature testing.
 
@@ -9,7 +9,7 @@ list and book spaces, and to give warnings if a space has already been booked.
 
 For furter functionalities and cosmetics, we will dedicate the following 2 days.
 
-# User Stories
+### User Stories
 
 ```
 As a user who has loads of space
@@ -42,27 +42,27 @@ I want to be able to book a space
 
 ```
 
-# Class Modelling
+### Class Modelling
 
 We decided to focus on a `space` and `user` class. However, we opted to add an additional class called `mbnb` for `space` storage, so to speak.
 
-## User Diagram
+### User Diagram
 
 ![User Diagram](https://raw.githubusercontent.com/frank-mck/MakerBnB/main/img/User.png)
 
-## Space Diagram
+### Space Diagram
 
 ![Space Diagram](https://raw.githubusercontent.com/frank-mck/MakerBnB/main/img/Space.png)
 
-# Sequence Diagram
+### Sequence Diagram
 
 ![Sequence Diagram](https://raw.githubusercontent.com/frank-mck/MakerBnB/main/img/Sequence.png)
 
-# Testing
+### Testing
 
 Run `rspec` for all testing within the directoy.
 
-# Data Base
+### Data Base
 
 We created 2 DBs for this project: `makersbnb` & `makersbnb_test`.
 
