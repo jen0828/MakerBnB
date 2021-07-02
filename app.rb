@@ -103,8 +103,16 @@ class MakersBnB < Sinatra::Base
     @id = User.find(session[:user_id])
     @user = User.find(params[:book])
     @booking = Space.find(params[:book])  
+
+    session[:space] = @booking.price
     erb :"spaces/booking"
   end
+
+  post '/spaces/:id/booking/confirm' do
+    @space = Space.find(params[:book])
+    erb :"spaces/booking"
+  end
+
 
 
   # start the server if ruby file executed directly
