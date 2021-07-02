@@ -6,7 +6,7 @@ require 'sinatra/flash'
 
 
 class MakersBnB < Sinatra::Base
-  enable :sessions, :method_override
+  enable :sessions, :method_override, :reloader
   register Sinatra::Flash
 
   # Users are first directed to the landing page, where they have the ability to sign up:
@@ -57,10 +57,6 @@ class MakersBnB < Sinatra::Base
     redirect '/login'
   end
 
-  get '/booking' do
-
-  end
-
   # Users will be redirected here to list or view spaces:
 
   get '/spaces' do
@@ -103,7 +99,26 @@ class MakersBnB < Sinatra::Base
     @id = User.find(session[:user_id])
     @user = User.find(params[:book])
     @booking = Space.find(params[:book])  
+
+    session[:place_booked] = @booking
+    session[:host] = @user
+    redirect '/error' unless session[:user_status] == true
     erb :"spaces/booking"
+  end
+
+  post '/confirm' do
+    session[:start] = params[:start_date]
+    redirect '/confirm'
+  end
+
+  get 'confirm'do
+    @start = session[:start]
+    erb(:confirm)
+  end
+
+
+  get '/thank_you' do
+    erb(:thank_you)
   end
 
 

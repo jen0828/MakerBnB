@@ -1,4 +1,4 @@
-<h1><%= @id.guest_name.capitalize %>, please complete your booking for...<%= @start %> </h1>
+<h1><%= @id.guest_name.capitalize %>, please confirm your <%= @start %></h1>
 
 <div class ='listing'>
   <div class ='image'></div>
@@ -6,23 +6,12 @@
       <span class ='name'><%= @booking.name %></span>
       <span class ='description'><%=@booking.description%></span>
         <p class ='host'>Hosted by <%= @user.guest_name %></p>
-      <span class ='price'>£<%=@booking.price%> per night</span>
-     <span class ='availability'>Available from <b><%=@booking.start_date%></b> to <b><%=@booking.finish_date%></b></span>
+      <span class ='price'>Total to pay: £<%=@price%></span>
 </div>
 </div>
-
-<form action ='/confirm' method ='post' >
-    <input class ='date' type ='date' name ='start_date' required>
-    <input class ='date' type ='date' name ='finish_date' required>
-    <select>
-      <option value = 0>How many nights</option>
-      <option value = 1>1</option>
-      <option value = 2>2</option>
-      <option value = 3>3</option>
-      <option value = 4>4</option>
-      </select>
-    <button type ='submit' name ='available' value ='Book now'>Book now</button>
-  </form>
+<form action = '/thank_you' method='get'>
+	 <button type ='submit' name ='confirm' value ='Confirm'>Confirm</button>
+</form>
 
   <div>
   <p class ='back'><a href ='/spaces'><< Changed your mind?</a></p>

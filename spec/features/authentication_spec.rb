@@ -26,10 +26,14 @@ feature 'Authentication' do
 
 	context 'logout' do
 		scenario 'A user logs out' do
-			visit('/logout')
-			click_button('Log me out!')
+			visit('/login')
+			fill_in('email', with: 'test@test.com')
+			fill_in('password', with: 'test123')
+			click_button('Login')
+
+			click_button('Log out')
 		
-			expect(page).to have_content('/goodbye')
+			expect(page).to have_content('Welcome')
 		end
 	end
 end
