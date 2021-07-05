@@ -19,7 +19,6 @@ group :development do
   gem 'selenium-webdriver'
   gem 'sinatra'
   gem 'sinatra-contrib'
-  gem 'sinatra-flash'
   gem 'webrick', '~> 1.7'
   gem 'sinatra-flash'
 end
