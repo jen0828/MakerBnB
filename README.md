@@ -1,51 +1,33 @@
 ## Makers Acedemy - Week 5 Group Project
 
-This project aims to model Airbnb as web app using Sinatra, PG, and Capybara for feature testing.
+This project aims to model an Airbnb web application using Sinatra and Capybara for feature testing. We're mainly coding in Ruby. SQL is being used with Postgres for our databases. Our group consists of 5 people. We aimed to complete the MVP after two days and a half of coding. We want our app to be able to sign up users, list and book spaces, and give warnings if a space has already been booked. For additional functionalities and cosmetics, we will dedicate the following two days.
 
-We're mainly coding in Ruby, and HTML. SQL is being used with Postgres for our Data Bases.
-
-Our group consists of 5 people. We aimed to complete the MVP after 2 days and a half of coding. We want our app to be able to sign up users,
-list and book spaces, and to give warnings if a space has already been booked.
-
-For furter functionalities and cosmetics, we will dedicate the following 2 days.
-
-
-### Screenshots
+### Screenshot
 
 ![Screen-Recording-2021-09-14-at-17 07 00](https://user-images.githubusercontent.com/79845719/133295020-476fc492-ebae-4263-a10a-1fa5c6832016.gif)
 
-### User Stories
+### Headline specifications
 
-```
-As a user who has loads of space
-So that I can share space
-I want to be able to sign up as a new user
+- Any signed-up user can list a new space.
+- Users can list multiple spaces.
+- Users should be able to name their space, provide a short description of the space, and a price per night.
+- Users should be able to offer a range of dates where their space is available.
+- Any signed-up user can request to hire any space for one night, and this should be approved by the user that owns that space.
+- Nights for which a space has already been booked should not be available for users to book that space.
+- Until a user has confirmed a booking request, that space can still be booked for that night.
 
-As a user who has loads of space
-So that I can share some space
-I want to be able to upload a space
+### Technologies ###
+* Ruby 
+* Sinatra
+* PostgreSQL
+* HTML & CSS
 
-As a user who has loads of space
-So I can list multiple spaces
-I want to be able to upload multiple spaces
+Testing:
+* RSpec
+* Capybara
 
-As a user
-In order to have many clients book my space
-I would like to show the range of dates where my space is available
 
-As a user
-So I don't overbook
-I want to know if a place is already booked
 
-As a user
-To book a space
-I want to be able to log in
-
-As a user
-To rent a space
-I want to be able to book a space
-
-```
 ## Installation
 
 ### To clone the repo
@@ -66,7 +48,7 @@ CREATE DATABASE makersbnb_test;
 
 Start the server in the terminal using:
 ```
-$ ruby app.rb #Start the server at localhost:4567
+$ rackup #Start the server at localhost:9292
 ```
 
 ### To run tests:
@@ -76,19 +58,4 @@ $ rspec
 ```
 
 
-### Class Modelling
-
-We decided to focus on a `space` and `user` class. However, we opted to add an additional class called `mbnb` for `space` storage, so to speak.
-
-### User Diagram
-
-![User Diagram](https://raw.githubusercontent.com/frank-mck/MakerBnB/main/img/User.png)
-
-### Space Diagram
-
-![Space Diagram](https://raw.githubusercontent.com/frank-mck/MakerBnB/main/img/Space.png)
-
-### Sequence Diagram
-
-![Sequence Diagram](https://raw.githubusercontent.com/frank-mck/MakerBnB/main/img/Sequence.png)
 
