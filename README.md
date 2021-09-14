@@ -1,4 +1,4 @@
-## MakerBnB
+## Makers Acedemy - Week 5 Group Project
 
 This project aims to model Airbnb as web app using Sinatra, PG, and Capybara for feature testing.
 
@@ -8,6 +8,11 @@ Our group consists of 5 people. We aimed to complete the MVP after 2 days and a 
 list and book spaces, and to give warnings if a space has already been booked.
 
 For furter functionalities and cosmetics, we will dedicate the following 2 days.
+
+
+### Screenshots
+
+![Screen-Recording-2021-09-14-at-17 07 00](https://user-images.githubusercontent.com/79845719/133295020-476fc492-ebae-4263-a10a-1fa5c6832016.gif)
 
 ### User Stories
 
@@ -41,6 +46,35 @@ To rent a space
 I want to be able to book a space
 
 ```
+## Installation
+
+### To clone the repo
+```shell
+$ git clone https://github.com/jen0828/MakerBnB.git
+$ cd MakerBnB
+```
+
+### To set up the database
+
+Connect to `psql` and create the `makersbnb` and `makersbnb_test` databases:
+```
+CREATE DATABASE makersbnb;
+CREATE DATABASE makersbnb_test;
+```
+
+### To run the app
+
+Start the server in the terminal using:
+```
+$ ruby app.rb #Start the server at localhost:4567
+```
+
+### To run tests:
+
+```
+$ rspec
+```
+
 
 ### Class Modelling
 
@@ -58,12 +92,3 @@ We decided to focus on a `space` and `user` class. However, we opted to add an a
 
 ![Sequence Diagram](https://raw.githubusercontent.com/frank-mck/MakerBnB/main/img/Sequence.png)
 
-### Testing
-
-Run `rspec` for all testing within the directoy.
-
-### Data Base
-
-We created 2 DBs for this project: `makersbnb` & `makersbnb_test`.
-
-Afterwards, we added two tables: `space` & `guest` for each DB. The specific commands can be found in the DB folder within this directory.
