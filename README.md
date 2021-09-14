@@ -1,6 +1,6 @@
 
-## Makersbnb
-#### Makers Acedemy - Week 5 Group Project
+# Makersbnb
+#### Makers Academy - Week 5 Group Project
 
 This project aims to model an Airbnb web application using Sinatra and Capybara for feature testing. We're mainly coding in Ruby. SQL is being used with Postgres for our databases. Our group consists of 5 people. We aimed to complete the MVP after two days and a half of coding. We want our app to be able to sign up users, list and book spaces, and give warnings if a space has already been booked. For additional functionalities and cosmetics, we will dedicate the following two days.
 
